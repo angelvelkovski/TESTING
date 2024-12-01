@@ -1,0 +1,26 @@
+{
+  "name": "testing",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "check:all": "yarn gql:types && yarn lint:tsc && yarn cspell && yarn lint:fix",
+    "cspell": "cspell --config .config/.cspell.json \"./{src,tests}/**/*.{ts,tsx,ejs,html,js,md,yml}\" --gitignore --no-summary --no-progress",
+    "lint:eslint": "eslint-output --max-warnings 0 && npm run lint",
+    "lint:tsc": "tsc --project .",
+    "lint": "npx eslint ./**/*.ts",
+    "lint:fix": "npm run lint -- --fix",
+    "test": "playwright test",
+    "test:headed": "playwright test --headed",
+    "test:test": "playwright test tests/test.spec.ts"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@playwright/test": "^1.49.0",
+    "@types/node": "^22.10.1",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.7.2"
+  }
+}
