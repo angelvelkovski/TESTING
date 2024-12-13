@@ -1,9 +1,8 @@
 {
   "compilerOptions": {
-    "baseUrl": "./", // Required for resolving non-relative imports
+    "baseUrl": "./",
     "paths": {
-      "*": ["node_modules/*"],
-      "fixtures/*": ["fixtures/*"] // Map fixtures directory for easier imports
+      "*": ["node_modules/*"]
     },
     "target": "ESNext",
     "module": "CommonJS",
