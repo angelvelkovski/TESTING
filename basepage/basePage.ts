@@ -24,6 +24,10 @@ export class BasePage {
   readonly alertSection: Locator;
   readonly alertTriggerButton: Locator;
   readonly alertBoxResult: Locator;
+  readonly widgetsSection: Locator;
+  readonly sliderOption: Locator;
+  readonly sliderValue: Locator;
+  readonly sliderLine: Locator;
 
   constructor(page: Page) {
     this.page = page;
@@ -48,6 +52,10 @@ export class BasePage {
     this.alertSection = page.getByText('Alerts', { exact: true });
     this.alertTriggerButton = page.locator('#confirmButton');
     this.alertBoxResult = page.locator('#confirmResult');
+    this.widgetsSection = page.locator('div').filter({ hasText: /^Widgets$/ }).nth(1);
+    this.sliderOption = page.getByText('Slider');
+    this.sliderLine = page.getByRole('slider');
+    this.sliderValue = page.locator('#sliderValue');
   }
   async goToElementsTextBoxSection() {
     await this.elementsSection.click();
@@ -138,5 +146,18 @@ export class BasePage {
 
   async verifyAlertOutput(result: string){
     await expect(this.alertBoxResult).toContainText(result);
+  }
+
+  async goToWidgetsSection(){
+    await this.widgetsSection.click();
+    await this.sliderOption.click();
+  }
+
+  async changeSliderValue(value: string){
+    await this.sliderLine.fill(value);
+  }
+
+  async verifySliderOutput(result: string){
+    await expect(this.sliderValue).toHaveValue(result);
   }
 }
